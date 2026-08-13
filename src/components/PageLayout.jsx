@@ -1,6 +1,6 @@
 function PageLayout({ children, grid }) {
   return (
-    <section className="px-8 py-12">
+    <section className="px-5 py-8 sm:px-8 sm:py-12">
       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start">
         <div>{children}</div>
         {grid ? (
