@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden overflow-y-auto bg-brand-600 text-brand-50">
       <Navbar />
-      <main className="flex-1 min-h-0 overflow-visible">
+      <main className="flex-1 min-h-0 overflow-visible pt-20 sm:pt-24">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsHub />} />

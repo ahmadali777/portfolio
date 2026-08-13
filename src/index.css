@@ -3,6 +3,7 @@
 @theme {
   --font-heading: "Noto Serif", serif;
   --font-body: "Playwrite NZ", cursive;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
   --color-brand-50: #f8f7f2ff;
   --color-brand-100: #e0e1ddff;
   --color-brand-200: #e3e8eeff;
@@ -36,4 +37,42 @@ a {
 
 a:hover {
   color: var(--color-brand-400);
+}
+
+@keyframes flip-top {
+  0%,
+  6% {
+    transform: rotateX(0deg);
+  }
+  18% {
+    transform: rotateX(-90deg);
+  }
+  30% {
+    transform: rotateX(-90deg);
+  }
+  42% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes flip-bottom {
+  0%,
+  6% {
+    transform: rotateX(0deg);
+  }
+  18% {
+    transform: rotateX(90deg);
+  }
+  30% {
+    transform: rotateX(90deg);
+  }
+  42% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
 }
