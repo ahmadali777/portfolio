@@ -2,7 +2,7 @@ function About() {
   return (
     <section className="mx-auto w-full max-w-5xl px-6 py-10 sm:px-8 lg:py-16">
       <header className="max-w-2xl">
-        <p className="mb-2 font-body text-brand-100">About</p>
+        <p className="mb-2 font-sans text-brand-100">About</p>
         <h1 className="font-heading text-3xl leading-tight text-brand-50 sm:text-5xl">
           Software engineer by title, problem solver by nature.
         </h1>
@@ -38,7 +38,7 @@ function About() {
               className="flex items-center justify-between rounded-2xl border border-brand-400/30 bg-brand-600/75 px-7 py-5 shadow-lg shadow-brand-900/25"
             >
               <span className="font-heading text-3xl font-bold text-brand-900">{stat.value}</span>
-              <span className="text-right text-sm text-brand-100">{stat.label}</span>
+              <span className="text-right text-base text-brand-100">{stat.label}</span>
             </div>
           ))}
         </div>
@@ -68,7 +68,7 @@ function About() {
           >
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-900">{area.tech}</p>
             <h3 className="mt-3 font-heading text-xl font-bold text-brand-50">{area.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-brand-100">{area.copy}</p>
+            <p className="mt-3 text-base leading-relaxed text-brand-100">{area.copy}</p>
           </article>
         ))}
       </div>

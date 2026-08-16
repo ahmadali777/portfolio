@@ -38,7 +38,7 @@ function Navbar() {
           aria-expanded={menuOpen}
           aria-controls="primary-navigation"
           onClick={() => setMenuOpen((open) => !open)}
-          className="flex h-10 w-10 items-center justify-center rounded-md border border-brand-400/60 text-brand-100 transition-colors hover:bg-brand-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-50 sm:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-md border border-brand-400/60 text-brand-100 transition-colors hover:bg-brand-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-50 sm:hidden"
         >
           <span className="sr-only">Menu</span>
           <span aria-hidden="true" className="flex w-5 flex-col gap-1.5">
@@ -47,11 +47,11 @@ function Navbar() {
             <span className={`h-0.5 w-full bg-current transition-transform ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
           </span>
         </button>
-        <div id="primary-navigation" className={`${menuOpen ? 'flex' : 'hidden'} absolute inset-x-0 top-full flex-col border-b border-brand-400/40 bg-brand-600/95 px-5 py-4 font-body text-sm text-brand-200 shadow-lg shadow-brand-900/30 backdrop-blur-xl sm:static sm:flex sm:flex-row sm:items-center sm:gap-6 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none`}>
-          <Link to="/" onClick={() => setMenuOpen(false)} className="hover:text-brand-50">Home</Link>
-          <Link to="/products" onClick={() => setMenuOpen(false)} className="hover:text-brand-50">Products</Link>
-          <Link to="/about" onClick={() => setMenuOpen(false)} className="hover:text-brand-50">About</Link>
-          <Link to="/contact" onClick={() => setMenuOpen(false)} className="hover:text-brand-50">Contact</Link>
+        <div id="primary-navigation" className={`${menuOpen ? 'flex' : 'hidden'} absolute inset-x-0 top-full flex-col border-b border-brand-400/40 bg-brand-600/95 px-5 py-4 font-sans text-base text-brand-200 shadow-lg shadow-brand-900/30 backdrop-blur-xl sm:static sm:flex sm:flex-row sm:items-center sm:gap-6 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none`}>
+          <Link to="/" onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center rounded-md px-2 py-3 hover:text-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-50 sm:min-h-0 sm:px-0 sm:py-0">Home</Link>
+          <Link to="/products" onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center rounded-md px-2 py-3 hover:text-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-50 sm:min-h-0 sm:px-0 sm:py-0">Products</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center rounded-md px-2 py-3 hover:text-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-50 sm:min-h-0 sm:px-0 sm:py-0">About</Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center rounded-md px-2 py-3 hover:text-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-50 sm:min-h-0 sm:px-0 sm:py-0">Contact</Link>
         </div>
       </div>
     </nav>

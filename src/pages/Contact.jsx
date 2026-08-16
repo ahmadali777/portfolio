@@ -1,3 +1,9 @@
+const WhatsAppIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28Z" />
+  </svg>
+)
+
 const MailIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
     <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -45,7 +51,7 @@ function Contact() {
   return (
     <section className="mx-auto w-full max-w-5xl px-6 py-10 sm:px-8 lg:py-16">
       <header className="max-w-2xl">
-        <p className="mb-2 font-body text-brand-100">Contact</p>
+        <p className="mb-2 font-sans text-brand-100">Contact</p>
         <h1 className="font-heading text-3xl leading-tight text-brand-50 sm:text-5xl">
           Have an app idea? Let's build it together.
         </h1>
@@ -68,8 +74,8 @@ function Contact() {
               <method.Icon />
             </span>
             <span className="mt-5 font-heading text-xl font-bold text-brand-50">{method.label}</span>
-            <span className="mt-1 text-sm text-brand-100 break-all">{method.value}</span>
-            <span className="mt-3 text-sm leading-relaxed text-brand-200">{method.note}</span>
+            <span className="mt-1 text-base text-brand-100 break-all">{method.value}</span>
+            <span className="mt-3 text-base leading-relaxed text-brand-200">{method.note}</span>
             <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-brand-900 transition-colors group-hover:text-brand-50">
               Reach out
               <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
@@ -80,15 +86,17 @@ function Contact() {
 
       <div className="mt-10 rounded-[2rem] border border-brand-400/30 bg-brand-600/75 px-7 py-10 text-center shadow-xl shadow-brand-900/25 sm:px-10">
         <p className="font-heading text-2xl font-bold text-brand-50">Get your app made</p>
-        <p className="mx-auto mt-3 max-w-md text-brand-100 text-sm leading-relaxed sm:text-base">
-          Prefer a quick chat instead of email? Reach out and I'll reply within a day
-          with a clear plan, timeline, and price.
+        <p className="mx-auto mt-3 max-w-md text-brand-100 text-base leading-relaxed sm:text-lg">
+          Prefer a quick chat instead of email? Reach out on WhatsApp.
         </p>
         <a
-          href="mailto:ahmadswe007@gmail.com"
-          className="mt-6 inline-block rounded-full bg-brand-400 px-8 py-4 font-heading text-base font-bold text-brand-50 shadow-lg shadow-brand-900/30 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-300"
+          href="https://wa.me/923125408407"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-400 px-8 py-4 font-heading text-base font-bold text-brand-50 shadow-lg shadow-brand-900/30 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-300"
         >
-          Start the conversation
+          <WhatsAppIcon />
+          Chat on WhatsApp
         </a>
       </div>
     </section>

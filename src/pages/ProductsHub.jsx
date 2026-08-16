@@ -104,27 +104,19 @@ function ProductsHub() {
         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-900">Core tech stack</p>
         <h2 className="mt-3 font-heading text-4xl font-bold text-brand-50 sm:text-5xl">My skills</h2>
 
-        <div className="mt-9 overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b border-brand-400/30 text-left">
-                <th className="py-3 pr-4 font-heading text-sm font-semibold uppercase tracking-wider text-brand-100">Area</th>
-                <th className="py-3 font-heading text-sm font-semibold uppercase tracking-wider text-brand-100">Technologies</th>
-              </tr>
-            </thead>
-            <tbody>
-              {skillGroups.map((group) => (
-                <tr key={group.title} className="border-b border-brand-400/20 last:border-0">
-                  <td className="py-5 pr-4 align-top font-heading text-lg font-bold text-brand-50">{group.title}</td>
-                  <td className="py-5">
-                    <div className="flex flex-wrap gap-3">
-                      {group.skills.map((skill) => <SkillPill key={skill.name} skill={skill} />)}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="mt-9">
+          <div className="hidden gap-6 border-b border-brand-400/30 pb-3 md:grid md:grid-cols-[240px_1fr]">
+            <span className="font-heading text-sm font-semibold uppercase tracking-wider text-brand-100">Area</span>
+            <span className="font-heading text-sm font-semibold uppercase tracking-wider text-brand-100">Technologies</span>
+          </div>
+          {skillGroups.map((group) => (
+            <div key={group.title} className="grid grid-cols-1 gap-3 border-b border-brand-400/20 py-6 last:border-0 md:grid-cols-[240px_1fr]">
+              <h3 className="font-heading text-lg font-bold text-brand-50">{group.title}</h3>
+              <div className="flex flex-wrap gap-3">
+                {group.skills.map((skill) => <SkillPill key={skill.name} skill={skill} />)}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
