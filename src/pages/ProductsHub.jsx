@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import products from '../data/products'
 import ProductCard from '../components/ProductCard'
 import flutterIcon from '../assets/techIcons/flutter-dark.svg'
@@ -91,12 +92,12 @@ function ProductsHub() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <a
-            href="mailto:ahmadswe007@gmail.com"
+          <Link
+            to="/contact"
             className="inline-block rounded-full bg-brand-400 px-8 py-4 font-heading text-base font-bold text-brand-50 shadow-lg shadow-brand-900/30 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-300"
           >
-            Get your app made
-          </a>
+            Get your app built
+          </Link>
         </div>
       </div>
 

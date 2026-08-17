@@ -55,12 +55,12 @@ function Home() {
           >
             View my work
           </Link>
-          <a
-            href="mailto:ahmadswe007@gmail.com"
+          <Link
+            to="/contact"
             className="rounded-full border border-brand-400/50 px-7 py-3 font-heading text-sm font-bold text-brand-100 transition duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-50"
           >
-            Get your app made
-          </a>
+            Get your app built
+          </Link>
         </div>
       </div>
 
