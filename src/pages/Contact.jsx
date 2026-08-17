@@ -82,7 +82,10 @@ function Contact() {
         body: JSON.stringify(form),
       })
 
-      const data = await res.json()
+      const contentType = res.headers.get('content-type') || ''
+      const data = contentType.includes('application/json')
+        ? await res.json()
+        : { error: 'The contact endpoint is unavailable. Please check the Vercel deployment includes api/contact.js.' }
 
       if (!res.ok) {
         throw new Error(data.error || 'Something went wrong')
