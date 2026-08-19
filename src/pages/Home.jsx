@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import profilePhoto from '../assets/profilePhoto.jpg'
 import profilePhoto2 from '../assets/profilePhoto-2.jpeg'
 import profilePhoto3 from '../assets/profilePhoto-3.jpeg'
+import HeroShader from '../components/HeroShader'
 
 const photos = [profilePhoto, profilePhoto2, profilePhoto3]
 
@@ -38,7 +39,9 @@ function Home() {
   useEffect(() => () => clearTimeout(timerRef.current), [])
 
   return (
-    <section className="grid items-center gap-12 px-6 py-10 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:py-16">
+    <section className="relative isolate grid items-center gap-12 overflow-hidden px-6 py-10 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:py-16">
+      <HeroShader />
+      <div className="pointer-events-none absolute inset-0 -z-[5] bg-gradient-to-b from-brand-600/30 via-brand-600/20 to-brand-600/40" />
       <div>
         <p className="mb-3 font-sans text-brand-100">Muhammad Ahmad Ali · Software Engineer</p>
         <h1 className="font-heading text-4xl leading-tight text-brand-50 sm:text-5xl">
