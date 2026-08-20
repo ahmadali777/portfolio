@@ -3,6 +3,8 @@ import { useEffect, useRef } from 'react'
 import vertSrc from '../shaders/heroVertex.glsl?raw'
 import fragSrc from '../shaders/heroFragment.glsl?raw'
 
+const MAX_RIPPLES = 16
+
 function compileShader(gl, type, source) {
   const shader = gl.createShader(type)
   gl.shaderSource(shader, source)
@@ -35,20 +37,17 @@ export default function HeroShader() {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    // ── Reduced motion: skip WebGL entirely, render a still CSS gradient ──
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches
     if (prefersReducedMotion) return
 
-    // ── WebGL2 context (falls back to WebGL1 automatically) ──────────────
     const gl = canvas.getContext('webgl2', { alpha: false })
     if (!gl) {
       console.warn('WebGL not supported — shader background disabled')
       return
     }
 
-    // ── Compile & link shaders ───────────────────────────────────────────
     const vert = compileShader(gl, gl.VERTEX_SHADER, vertSrc)
     const frag = compileShader(gl, gl.FRAGMENT_SHADER, fragSrc)
     if (!vert || !frag) return
@@ -57,7 +56,6 @@ export default function HeroShader() {
     if (!program) return
     gl.useProgram(program)
 
-    // ── Full-screen quad geometry (two triangles) ────────────────────────
     // prettier-ignore
     const quad = new Float32Array([
       -1, -1,
@@ -76,20 +74,52 @@ export default function HeroShader() {
     gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0)
 
     // ── Uniform locations ────────────────────────────────────────────────
-    const uTime       = gl.getUniformLocation(program, 'u_time')
-    const uResolution = gl.getUniformLocation(program, 'u_resolution')
-    const uMouse      = gl.getUniformLocation(program, 'u_mouse')
+    const uTime        = gl.getUniformLocation(program, 'u_time')
+    const uResolution  = gl.getUniformLocation(program, 'u_resolution')
+    const uMouse       = gl.getUniformLocation(program, 'u_mouse')
+    const uRippleCount = gl.getUniformLocation(program, 'u_rippleCount')
 
-    // ── Mouse state (normalised 0‑1, y‑flipped) ─────────────────────────
+    const uRipplePos  = []
+    const uRippleTime = []
+    for (let i = 0; i < MAX_RIPPLES; i++) {
+      uRipplePos.push(gl.getUniformLocation(program, "u_ripplePos[" + i + "]"))
+      uRippleTime.push(gl.getUniformLocation(program, "u_rippleTime[" + i + "]"))
+    }
+
+    // ── Mouse state ─────────────────────────────────────────────────────
     const mouse = { x: 0.5, y: 0.5 }
     function onMouseMove(e) {
       const rect = canvas.getBoundingClientRect()
       mouse.x = (e.clientX - rect.left) / rect.width
-      mouse.y = 1.0 - (e.clientY - rect.top) / rect.height // flip Y
+      mouse.y = 1.0 - (e.clientY - rect.top) / rect.height
     }
     canvas.addEventListener('mousemove', onMouseMove)
 
-    // ── Resize handling with dpr cap ─────────────────────────────────────
+    // ── Ripple state (circular buffer) ──────────────────────────────────
+    const ripples = { positions: [], times: [], next: 0, count: 0 }
+    const startTime = performance.now()
+
+    function onClick(e) {
+      const rect = canvas.getBoundingClientRect()
+      const x = (e.clientX - rect.left) / rect.width
+      const y = 1.0 - (e.clientY - rect.top) / rect.height
+      const t = (performance.now() - startTime) / 1000
+
+      if (ripples.positions.length < MAX_RIPPLES * 2) {
+        ripples.positions.push(x, y)
+        ripples.times.push(t)
+      } else {
+        const idx = ripples.next * 2
+        ripples.positions[idx]     = x
+        ripples.positions[idx + 1] = y
+        ripples.times[ripples.next] = t
+      }
+      ripples.next = (ripples.next + 1) % MAX_RIPPLES
+      if (ripples.count < MAX_RIPPLES) ripples.count++
+    }
+    canvas.addEventListener('click', onClick)
+
+    // ── Resize handling ─────────────────────────────────────────────────
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       const w = canvas.clientWidth
@@ -109,10 +139,8 @@ export default function HeroShader() {
 
     // ── Render loop ──────────────────────────────────────────────────────
     let raf
-    const startTime = performance.now()
 
     function frame() {
-      // Pause when tab is hidden to conserve GPU.
       if (document.visibilityState === 'hidden') {
         raf = requestAnimationFrame(frame)
         return
@@ -124,6 +152,13 @@ export default function HeroShader() {
       gl.uniform2f(uResolution, canvas.width, canvas.height)
       gl.uniform2f(uMouse, mouse.x, mouse.y)
 
+      // Upload ripple data
+      gl.uniform1i(uRippleCount, ripples.count)
+      for (let i = 0; i < ripples.count; i++) {
+        gl.uniform2f(uRipplePos[i], ripples.positions[i * 2], ripples.positions[i * 2 + 1])
+        gl.uniform1f(uRippleTime[i], ripples.times[i])
+      }
+
       gl.drawArrays(gl.TRIANGLES, 0, 6)
       raf = requestAnimationFrame(frame)
     }
@@ -134,17 +169,15 @@ export default function HeroShader() {
       cancelAnimationFrame(raf)
       clearTimeout(resizeTimeout)
       canvas.removeEventListener('mousemove', onMouseMove)
+      canvas.removeEventListener('click', onClick)
       window.removeEventListener('resize', onResize)
       gl.deleteProgram(program)
       gl.deleteShader(vert)
       gl.deleteShader(frag)
       gl.deleteBuffer(vbo)
-      // gl.getExtension('WEBGL_lose_context')?.loseContext() // Removed: causes issues with React Strict Mode
     }
   }, [])
 
-  // When reduced motion is active the canvas renders nothing — the
-  // section's existing bg-brand-600 from App.jsx acts as a static fallback.
   return (
     <canvas
       ref={canvasRef}
