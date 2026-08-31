@@ -2,6 +2,7 @@ import taskManagerImg from '../assets/productsPhotos/Task manager.jpg'
 import inventoryImg from '../assets/productsPhotos/inventory management.jpg'
 import nooraniImg from '../assets/productsPhotos/Noorani Qaida post.png'
 import wellbotImg from '../assets/productsPhotos/wellbot.jpg'
+import bodyBuilderImg from '../assets/productsPhotos/BODY BUILDER DIET TRACKER.png'
 
 const products = [
   {
@@ -35,6 +36,14 @@ const products = [
     image: wellbotImg,
     description: 'All-in-one health tracker — food, water, and workouts in one dashboard.',
     techStack: ['Flutter', 'Dart', 'Gemini API', 'Firebase'],
+  },
+  {
+    id: 'body-builder-diet-tracker',
+    title: 'BodyBuilder Diet Tracker',
+    accent: 500,
+    image: bodyBuilderImg,
+    description: 'A minimalistic app to track your diet and workout — edit both plans and visualize your progress right on the home screen.',
+    techStack: ['Flutter', 'Dart'],
   },
 ]
 
