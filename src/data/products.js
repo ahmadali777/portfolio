@@ -12,6 +12,7 @@ const products = [
     image: taskManagerImg,
     description: 'A clean task tracker built to actually get used, not just look nice in a demo.',
     techStack: ['React'],
+    visitLink: ""
   },
   {
     id: 'inventory',
@@ -20,6 +21,7 @@ const products = [
     image: inventoryImg,
     description: 'Offline-first inventory tracking for hardware store owners, with PDF billing and customer credit tracking.',
     techStack: ['Flutter', 'Dart', 'Firebase'],
+    visitLink: ""
   },
   {
     id: 'noorani-qaida',
@@ -28,6 +30,7 @@ const products = [
     image: nooraniImg,
     description: 'Arabic pronunciation and Quran learning app with 17 audio lessons and interactive quizzes.',
     techStack: ['Flutter', 'Dart', 'SQFlite'],
+    visitLink: "https://play.google.com/store/apps/details?id=com.ahmadali.nooraniQaida"
   },
   {
     id: 'wellbot',
@@ -36,6 +39,7 @@ const products = [
     image: wellbotImg,
     description: 'All-in-one health tracker — food, water, and workouts in one dashboard.',
     techStack: ['Flutter', 'Dart', 'Gemini API', 'Firebase'],
+    visitLink: "https://play.google.com/store/apps/details?id=com.ahmadali.nooraniQaida"
   },
   {
     id: 'body-builder-diet-tracker',
@@ -44,6 +48,7 @@ const products = [
     image: bodyBuilderImg,
     description: 'A minimalistic app to track your diet and workout — edit both plans and visualize your progress right on the home screen.',
     techStack: ['Flutter', 'Dart'],
+    visitLink: ""
   },
 ]
 

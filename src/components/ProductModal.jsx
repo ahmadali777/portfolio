@@ -96,6 +96,9 @@ function ProductModal({ product, onClose }) {
               ))}
             </div>
           </div>
+          <a href={product.visitLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-400 px-8 py-3 font-heading text-base font-bold text-brand-50 shadow-lg shadow-brand-900/30 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-50">
+            <span>Visit</span>
+          </a>
         </div>
       </div>
     </div>
